@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct TDLButtom: View {
     
     let title: String
