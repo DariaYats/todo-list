@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TDLButtom: View {
+struct TLButton: View {
     
     let title: String
     let background: Color
@@ -30,7 +30,7 @@ struct TDLButtom: View {
 }
 
 #Preview {
-    TDLButtom(title: "Value", background: .blue) {
+    TLButton(title: "Value", background: .blue) {
         //
     }
 }
