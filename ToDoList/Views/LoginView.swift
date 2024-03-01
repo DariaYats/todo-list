@@ -31,7 +31,7 @@ struct LoginView: View {
                     SecureField("Password", text: $viewModel.password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                    TDLButtom(title: "Log In", background: .blue) {
+                    TLButton(title: "Log In", background: .blue) {
                         viewModel.login()
                     }
                     .padding()
@@ -39,7 +39,7 @@ struct LoginView: View {
                 .offset(y: -50)
                 
                 VStack {
-                    Text("New around her?")
+                    Text("New around here?")
                     NavigationLink("Crete An Account", destination: RegisterView())
                 }
                 .padding(.bottom, 50)
