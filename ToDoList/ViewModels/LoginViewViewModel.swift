@@ -11,6 +11,8 @@ class LoginViewViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var errorMessage = ""
+    @Published var alertMessage: String?
+    @Published var showAlert = false 
     
     init() {
         
@@ -23,7 +25,7 @@ class LoginViewViewModel: ObservableObject {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             if let error {
-                self?.errorMessage = "Invalid email or password."
+                self?.showAlert = true 
                 print(error)
             }
         }
@@ -33,7 +35,7 @@ class LoginViewViewModel: ObservableObject {
         errorMessage = ""
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
               !password.trimmingCharacters(in: .whitespaces).isEmpty else {
-            errorMessage = "Please fill in all field."
+            errorMessage = "Please fill in all fields."
             return false
         }
         

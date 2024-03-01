@@ -46,6 +46,11 @@ struct LoginView: View {
                 
                 Spacer()
             }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text("Error"),
+                      message: Text("Invalid email or password."))
+            }
+            
         }
     }
 }
