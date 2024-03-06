@@ -6,34 +6,53 @@
 //
 
 import SwiftUI
+import Combine
+
+
+
+
+extension Publishers {
+    // 1.
+    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
+        // 2.
+        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
+            .map { $0.keyboardHeight }
+        
+        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
+            .map { _ in CGFloat(0) }
+        
+        // 3.
+        return MergeMany(willShow, willHide)
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Notification {
+    var keyboardHeight: CGFloat {
+        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+    }
+}
 
 struct KeyboardAdaptive: ViewModifier {
-    @State private var keyboardHeight: CGFloat = 0
-
+    @State private var bottomPadding: CGFloat = 0
+    
     func body(content: Content) -> some View {
-        content
-            .padding(.bottom, keyboardHeight)
-            .edgesIgnoringSafeArea(keyboardHeight > 0 ? .bottom : [])
-            .onAppear(perform: subscribeToKeyboardEvents)
-    }
-
-    private func subscribeToKeyboardEvents() {
-        NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillShowNotification,
-            object: nil,
-            queue: .main
-        ) { notification in
-            if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-                self.keyboardHeight = keyboardSize.height
+        // 1.
+        GeometryReader { geometry in
+            content
+                .padding(.bottom, self.bottomPadding)
+                // 2.
+                .onReceive(Publishers.keyboardHeight) { keyboardHeight in
+                    // 3.
+                    let keyboardTop = UIScreen.main.bounds.height - keyboardHeight
+                    // 4.
+                    let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
+                    // 5.
+                    self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
             }
-        }
-
-        NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillHideNotification,
-            object: nil,
-            queue: .main
-        ) { _ in
-            self.keyboardHeight = 0
+            // 6.
+            .animation(.easeOut(duration: 0.16))
+            .ignoresSafeArea(.keyboard)
         }
     }
 }
