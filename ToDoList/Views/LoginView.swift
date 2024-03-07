@@ -17,8 +17,7 @@ struct LoginView: View {
                 HeaderView(title: "To Do List", subtitle: "Get things done", angle: 15, background: .pink)
                 
                 
-                Form {
-                    
+                VStack {
                     if !viewModel.errorMessage.isEmpty {
                         Text(viewModel.errorMessage)
                             .foregroundColor(.red)
@@ -34,23 +33,28 @@ struct LoginView: View {
                     TLButton(title: "Log In", background: .blue) {
                         viewModel.login()
                     }
+                    .frame(height: 40)
                     .padding()
                 }
-                .offset(y: -50)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(16)
+                .shadow(radius: 2)
                 
                 VStack {
                     Text("New around here?")
                     NavigationLink("Crete An Account", destination: RegisterView())
                 }
-                .padding(.bottom, 50)
-                
+                .padding(.top, 60)
+//                .offset(y: 150)
+                .ignoresSafeArea(.keyboard)
                 Spacer()
+                .keyboardAdaptive()
             }
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("Error"),
                       message: Text("Invalid email or password."))
             }
-            
         }
     }
 }
