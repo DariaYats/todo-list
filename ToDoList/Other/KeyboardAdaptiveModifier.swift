@@ -40,7 +40,7 @@ struct KeyboardAdaptive: ViewModifier {
         // 1.
         GeometryReader { geometry in
             content
-                .padding(.bottom, self.bottomPadding)
+                .offset(y: -self.bottomPadding)
                 // 2.
                 .onReceive(Publishers.keyboardHeight) { keyboardHeight in
                     // 3.
@@ -59,6 +59,25 @@ struct KeyboardAdaptive: ViewModifier {
 
 extension View {
     func keyboardAdaptive() -> some View {
-        modifier(KeyboardAdaptive())
+        ModifiedContent(content: self, modifier: KeyboardAdaptive())
+    }
+}
+
+extension UIResponder {
+    static var currentFirstResponder: UIResponder? {
+        _currentFirstResponder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder.findFirstResponder(_:)), to: nil, from: nil, for: nil)
+        return _currentFirstResponder
+    }
+
+    private static weak var _currentFirstResponder: UIResponder?
+
+    @objc private func findFirstResponder(_ sender: Any) {
+        UIResponder._currentFirstResponder = self
+    }
+
+    var globalFrame: CGRect? {
+        guard let view = self as? UIView else { return nil }
+        return view.superview?.convert(view.frame, to: nil)
     }
 }

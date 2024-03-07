@@ -57,6 +57,7 @@
 		432637DA2B86509C00D70EED /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432637D92B86509C00D70EED /* HeaderView.swift */; };
 		432637DC2B8757E100D70EED /* TLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432637DB2B8757E100D70EED /* TLButton.swift */; };
 		432637DE2B8CB95300D70EED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432637DD2B8CB95300D70EED /* Extensions.swift */; };
+		43EBE9BB2B95F08C0002869D /* KeyboardAdaptiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EBE9BA2B95F08C0002869D /* KeyboardAdaptiveModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		432637D92B86509C00D70EED /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		432637DB2B8757E100D70EED /* TLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLButton.swift; sourceTree = "<group>"; };
 		432637DD2B8CB95300D70EED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		43EBE9BA2B95F08C0002869D /* KeyboardAdaptiveModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptiveModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				4326376E2B861FFC00D70EED /* ToDoListApp.swift */,
 				432637B32B86218C00D70EED /* GoogleService-Info.plist */,
 				432637DD2B8CB95300D70EED /* Extensions.swift */,
+				43EBE9BA2B95F08C0002869D /* KeyboardAdaptiveModifier.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				432637C62B8649E200D70EED /* User.swift in Sources */,
 				432637D02B864BAC00D70EED /* ToDoListViewViewModel.swift in Sources */,
 				432637C42B8649A500D70EED /* ToDoListItemView.swift in Sources */,
+				43EBE9BB2B95F08C0002869D /* KeyboardAdaptiveModifier.swift in Sources */,
 				432637D42B864C2400D70EED /* LoginViewViewModel.swift in Sources */,
 				432637DC2B8757E100D70EED /* TLButton.swift in Sources */,
 				4326376F2B861FFC00D70EED /* ToDoListApp.swift in Sources */,
