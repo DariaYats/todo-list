@@ -35,12 +35,14 @@ struct RegisterView: View {
                     .frame(height: 40)
                     .padding()
                 }
+                .padding()
                 .background(Color.white)
                 .cornerRadius(16)
                 .shadow(radius: 2)
-                .keyboardAdaptive()
                 .padding(.bottom, 150)
                 .ignoresSafeArea(.keyboard)
+                Spacer()
+                .keyboardAdaptive()
                 
             }
         }
