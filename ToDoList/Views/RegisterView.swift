@@ -10,30 +10,40 @@ import SwiftUI
 struct RegisterView: View {
     @StateObject var viewModel = RegisterViewViewModel()
     
+    
     var body: some View {
-        HeaderView(title: "Register", subtitle: "Start organizing todos", angle: -15, background: .yellow)
-        
-        Form {
-            TextField("Full Name", text: $viewModel.name)
-                .textFieldStyle(DefaultTextFieldStyle())
-                .autocorrectionDisabled()
-            
-            TextField("Email Address", text: $viewModel.email)
-                .textFieldStyle(DefaultTextFieldStyle())
-                .autocorrectionDisabled()
-                .autocapitalization(.none)
-            
-            SecureField("Password", text: $viewModel.password)
-                .textFieldStyle(DefaultTextFieldStyle())
-            
-            TLButton(title: "Create Account", background: .green) {
-                viewModel.register()
+        NavigationView {
+            VStack {
+                HeaderView(title: "Register", subtitle: "Start organizing todos", angle: -15, background: .yellow)
+                
+                VStack {
+                    TextField("Full Name", text: $viewModel.name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocorrectionDisabled()
+                    
+                    TextField("Email Address", text: $viewModel.email)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocorrectionDisabled()
+                        .autocapitalization(.none)
+                    
+                    SecureField("Password", text: $viewModel.password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TLButton(title: "Create Account", background: .green) {
+                        viewModel.register()
+                    }
+                    .frame(height: 40)
+                    .padding()
+                }
+                .background(Color.white)
+                .cornerRadius(16)
+                .shadow(radius: 2)
+                .keyboardAdaptive()
+                .padding(.bottom, 150)
+                .ignoresSafeArea(.keyboard)
+                
             }
-            .padding()
         }
-        .offset(y: -50)
-        
-        Spacer()
     }
 }
 
