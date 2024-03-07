@@ -43,7 +43,7 @@ struct LoginView: View {
                 
                 VStack {
                     Text("New around here?")
-                    NavigationLink("Crete An Account", destination: RegisterView())
+                    NavigationLink("Create An Account", destination: RegisterView())
                 }
                 .padding(.top, 60)
 //                .offset(y: 150)
